@@ -1,52 +1,78 @@
 <?php 
-	$host = "localhost";
-	$user = "root";
-	$password = "mysql";
-	$dbname = "challenges-back-end";
-
-	$dsn = "mysql:host=". $host .";dbname=" . $dbname;
-
-	$pdo = new PDO($dsn, $user, $password);
-	$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
-
+	include "../index/header.php";
 	$statement = $pdo->query("SELECT * FROM lists");
 ?>
-<?php include "../index/header.php" ?>
 <body>
 	<div class="headerImgContainer">
-		<div class="headerTextContainer">
-			<h1>
-				Challenge back end <br>
-				ToDo list
-			</h1>
-			<p>
-				-item 1 <br>
-				-item 2	<br>
-				-item 3	<br>
-			</p>
-		</div>
 		<img src="../images/header-photo.jpeg" alt="header">
 	</div>
 	<div class="planningContainer">
 		<div class="contentContainer">
+			<div class="planningButtonContainer">
+				<a class="planningButtonLink" href="createList.php">
+					<button>
+						Lijst toevoegen
+					</button>
+				</a>
+			</div>
 			<?php while ($row = $statement->fetch()){ ?>
-				<div class="planningItemContainer">
-					<a class="planningMainLink" href="#">
+				<div class="planningListContainer">
+					<div class="planningItemContainer">
 						<div class="planningItem">
 							<h3>
 								<?php echo $row["name"]?>
 							</h3>
-							<span>
-								<?php echo $row["date_made"]?>
-							</span>
+							<a class="planningLinks" href="edit.php?number=<?php echo $row["id"] ?>">
+								<i class="far fa-edit"></i>
+							</a>
+							<a class="planningLinks" href="delete.php?number=<?php echo $row["id"] ?>">
+								<i class="far fa-trash-alt"></i>
+							</a>
 						</div>
-					</a>
-					<a class="planningLinks" href="edit.php?number=<?php echo $row["id"] ?>">
-						<i class="far fa-edit"></i>
-					</a>
-					<a class="planningLinks" href="delete.php?number=<?php echo $row["id"] ?>">
-						<i class="far fa-trash-alt"></i>
-					</a>
+						<div class="planningTasks">
+							<div class="planningTasksInfoBar">
+								<div class="taskInfoBar">
+									Taak
+								</div>
+								<div class="timeInfoBar">
+									Tijdsduur
+								</div>
+								<div class="statusInfoBar">
+									Status
+								</div>
+							</div>
+							<hr>
+							<?php 
+							$statement2 = $pdo->query("SELECT * FROM tasks WHERE list_id=$row[id] ORDER BY tasks.task_id ASC"); ?>
+							<?php while ($row2 = $statement2->fetch()){ ?>
+								<div class="planningTaskContainer">
+									<div class="task">
+										<?php echo $row2["task"]?>
+									</div>
+									<div class="time">
+										<?php echo $row2["length_of_time"]?>
+									</div>
+									<div class="status">
+										<?php echo $row2["status"]?>
+									</div>
+									<a class="planningLinks" href="edit.php?number=<?php echo $row2["task_id"] ?>">
+										<i class="far fa-edit"></i>
+									</a>
+									<a class="planningLinks" href="delete.php?number=<?php echo $row2["task_id"] ?>">
+										<i class="far fa-trash-alt"></i>
+									</a>
+								</div>
+								<hr>
+							<?php } ?>
+							<div class="listButtonContainer">
+								<a class="planningButtonLink" href="createTask.php?number=<?php echo $row["id"] ?>">
+									<button>
+										taak toevoegen
+									</button>
+								</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			<?php } ?>
 		</div>

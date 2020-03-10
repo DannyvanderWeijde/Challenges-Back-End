@@ -62,6 +62,38 @@ nav li:hover{
 	color: #000;
 }
 
+button{
+	border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    color: #000;
+    background-color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 8px 1px rgba(230,230,230,1);
+	-moz-box-shadow: 0px 0px 8px 1px rgba(230,230,230,1);
+	box-shadow: 0px 0px 8px 1px rgba(230,230,230,1);
+    -webkit-transition: 0.3s ease-out;
+    -moz-transition: 0.3s ease-out;
+    -o-transition: 0.3s ease-out;
+    -ms-transition: 0.3s ease-out;
+    transition: 0.3s ease-out;
+}
+
+button:hover{
+	color: #fff;
+    background-color: #000;
+	-webkit-box-shadow: 0px 0px 8px 1px rgba(176,176,176,1);
+	-moz-box-shadow: 0px 0px 8px 1px rgba(176,176,176,1);
+	box-shadow: 0px 0px 8px 1px rgba(176,176,176,1);
+}
+
+form{
+	margin: 25px 0px;
+}
+
 footer{
 	width: 100%;
 	height: 50px;
@@ -77,7 +109,8 @@ footer div{
 .contentContainer,
 .headerImgContainer,
 .planningContainer,
-.planningItemContainer{
+.planningListContainer,
+.planningTasksInfoBar{
 	width: 100%;
 	height: auto;
 	overflow: auto;
@@ -94,27 +127,6 @@ footer div{
 	position: relative;
 }
 
-.headerTextContainer{
-	width: 310px;
-    height: 300px;
-    position: absolute;
-    top: 20%;
-    left: 33%;
-    transform: rotate(-33deg);
-}
-
-.headerTextContainer h1{
-	margin: 0px 0px 20px 0px;
-}
-
-.headerTextContainer h1, .headerTextContainer p{
-	font-family: 'Shadows Into Light', arial;
-}
-
-.headerTextContainer p{
-	font-size: 20px;
-}
-
 .headerImgContainer img{
 	width: 100%;
 }
@@ -129,21 +141,20 @@ footer div{
 	color: #000;
 }
 
-.planningItemContainer{
+.planningListContainer{
 	width: 80%;
 	position: relative;
 	margin: 0 auto;
 }
 
-.planningItem{
-	width: 100%;
+.planningItemContainer{
+	width: 98%;
 	height: auto;
 	background-color: #fff;
 	margin: 0 auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 25px;
+	margin-bottom: 25px;
 	padding: 20px;
-	position: relative;
 	-moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -157,25 +168,33 @@ footer div{
     transition: all 0.5s ease;
 }
 
-.planningItem:hover{
+.planningItemContainer:hover{
 	-webkit-box-shadow: 0px 0px 8px 1px rgba(176,176,176,1);
 	-moz-box-shadow: 0px 0px 8px 1px rgba(176,176,176,1);
 	box-shadow: 0px 0px 8px 1px rgba(176,176,176,1);
 }
 
-.planningItem h3{
-	margin: 0px 0px 5px 0px;
+.planningItem,
+.planningTasks{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	padding: 20px;
+	position: relative;
 }
 
-.planningMainLink{
-	display: block;
+.planningItem{
 	width: 98%;
-	margin: 0 auto;
+	margin: 0px;
+}
+
+.planningTasks{
+	padding: 5px 20px 20px 20px;
 }
 
 .planningLinks{
 	position: absolute;
-	right: 25px;	
+	right: 20px;	
 	top: 50%;
 	transform: translate(0, -50%);
 	-webkit-transition: all 0.5s ease;
@@ -189,10 +208,83 @@ footer div{
 	color: #ff0000;
 }
 
-.planningItemContainer .planningLinks:nth-child(2n):hover{
+.planningListContainer .planningLinks:nth-child(2n):hover{
 	color: #0089ff;
 }
 
-.planningItemContainer .planningLinks:nth-child(2n){
-	right: 55px;
+.planningListContainer .planningLinks:nth-child(2n){
+	right: 50px;
+}
+
+.planningTaskContainer{
+	width: 100%;
+	height: auto;
+	margin: 15px 0px;
+	position: relative;
+}
+
+.planningTasksInfoBar{
+	margin: 0px 0px 30px 0px;
+}
+
+.task,
+.time,
+.status,
+.taskInfoBar,
+.timeInfoBar,
+.statusInfoBar{
+	width: 33%;
+	display: inline-block;
+}
+
+.time,
+.status{
+	position: absolute;
+	top: 0px;
+}
+
+.time{
+	left: 33.5%;
+}
+
+.status{
+	left: 67%;
+}
+
+.planningButtonContainer{
+	width: 79%;
+	height: auto;
+	padding: 5px;
+	margin: 0 auto;
+}
+
+.planningButtonLink{
+	display: inline-block;
+}
+
+.createContainer{
+	background-color: #eeeeee;
+	padding: 100px 0px;
+}
+
+.createContainer h1{
+	margin: 0px 0px 10px 0px;
+}
+
+.inputBox{
+	width: 100%;
+	height: auto;
+	margin: 30px 0px;
+}
+
+.inputBox p{
+	margin: 0px 0px 10px 0px;
+}
+
+.listButtonContainer{
+	margin: 25px 0px 0px 0px;
+}
+
+.added{
+	color: #08aa23;
 }
