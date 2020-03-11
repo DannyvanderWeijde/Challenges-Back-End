@@ -1,13 +1,14 @@
 <?php 
 	include "../index/header.php";
-	$sent = false;
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 		$listName = test_input($_POST["listName"]);
 		
 		$sql = "INSERT INTO lists(name) VALUES(:listName)";
 		$statement = $pdo->prepare($sql);
 		$statement->execute(["listName" => $listName]);
-		$sent = true;
+
+		header("Location: home.php");
+		die();
 	}
 
 	function test_input($data){
@@ -35,11 +36,6 @@
 					Aanmaken
 				</button>
 			</form>
-			<?php if($sent == true){ ?>
-				<div class="added">
-					Lijst is toegevoegt!
-				</div>
-			<?php } ?>
 		</div>
 	</div>
 </body>

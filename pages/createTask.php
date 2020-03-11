@@ -1,7 +1,6 @@
 <?php 
 	include "../index/header.php";
 	$id = $_GET["number"];
-	$sent = false;
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$task = test_input($_POST["task"]);
 		$time = test_input($_POST["time"]);
@@ -15,7 +14,9 @@
 		$sql = "INSERT INTO tasks(task,length_of_time,status,list_id) VALUES(:task, :length_of_time, :status, :list_id)";
 		$statement = $pdo->prepare($sql);
 		$statement->execute(["task" => $task, "length_of_time" => $time, "status" => $statusText, "list_id" => $id]);
-		$sent = true;
+
+		header("Location: home.php");
+		die();
 	}
 
 	function test_input($data){
@@ -51,11 +52,6 @@
 					Aanmaken
 				</button>
 			</form>
-			<?php if($sent == true){ ?>
-				<div class="added">
-					Taak is toegevoegt!
-				</div>
-			<?php } ?>
 		</div>
 	</div>
 </body>

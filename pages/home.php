@@ -22,14 +22,14 @@
 							<h3>
 								<?php echo $row["name"]?>
 							</h3>
-							<a class="planningLinks" href="edit.php?number=<?php echo $row["id"] ?>">
+							<a class="planningLinks" href="editList.php?number=<?php echo $row["id"] ?>">
 								<i class="far fa-edit"></i>
 							</a>
-							<a class="planningLinks" href="delete.php?number=<?php echo $row["id"] ?>">
+							<a class="planningLinks" href="deleteList.php?number=<?php echo $row["id"] ?>">
 								<i class="far fa-trash-alt"></i>
 							</a>
 						</div>
-						<div class="planningTasks">
+						<div class="planningTasks" id="<?php echo $row["id"] ?>">
 							<div class="planningTasksInfoBar">
 								<div class="taskInfoBar">
 									Taak
@@ -37,9 +37,9 @@
 								<div class="timeInfoBar">
 									Tijdsduur
 								</div>
-								<div class="statusInfoBar">
+								<button class="statusInfoBar" onclick="sort('<?php echo $row["id"] ?>')">
 									Status
-								</div>
+								</button>
 							</div>
 							<hr>
 							<?php 
@@ -55,10 +55,10 @@
 									<div class="status">
 										<?php echo $row2["status"]?>
 									</div>
-									<a class="planningLinks" href="edit.php?number=<?php echo $row2["task_id"] ?>">
+									<a class="planningLinks" href="editTask.php?number=<?php echo $row2["task_id"] ?>">
 										<i class="far fa-edit"></i>
 									</a>
-									<a class="planningLinks" href="delete.php?number=<?php echo $row2["task_id"] ?>">
+									<a class="planningLinks" href="deleteTask.php?number=<?php echo $row2["task_id"] ?>">
 										<i class="far fa-trash-alt"></i>
 									</a>
 								</div>
