@@ -1,6 +1,8 @@
 <?php 
 	include "../index/header.php";
 	$statement = $pdo->query("SELECT * FROM lists");
+	echo $_GET["row"];
+	echo $_GET["sort"];
 ?>
 <body>
 	<div class="headerImgContainer">
@@ -36,14 +38,33 @@
 								</div>
 								<div class="timeInfoBar">
 									Tijdsduur
+									<a href="home.php?row=<?php echo $row["id"] ?>&minTime=30">
+										30+
+									</a>
+									<a href="home.php?row=<?php echo $row["id"] ?>&minTime=60">
+										60+
+									</a>
+									<a href="home.php">
+										<i class="fas fa-times"></i>
+									</a>
 								</div>
-								<button class="statusInfoBar" onclick="sort('<?php echo $row["id"] ?>')">
+								<button class="statusInfoBar" onclick="getListWithTasks('<?php echo $row["id"] ?>')">
 									Status
 								</button>
+								<a href="home.php?row=<?php echo $row["id"] ?>&sort=done">
+									<i class="fas fa-check"></i>
+								</a>
+								<a href="home.php?row=<?php echo $row["id"] ?>&sort=undone">
+									<i class="fas fa-hourglass-half"></i>
+								</a>
+								<a href="home.php">
+									<i class="fas fa-times"></i>
+								</a>
 							</div>
 							<hr>
 							<?php 
-							$statement2 = $pdo->query("SELECT * FROM tasks WHERE list_id=$row[id] ORDER BY tasks.task_id ASC"); ?>
+								$statement2 = $pdo->query("SELECT * FROM tasks WHERE list_id=$row[id] ORDER BY tasks.task_id ASC");
+							?>
 							<?php while ($row2 = $statement2->fetch()){ ?>
 								<div class="planningTaskContainer">
 									<div class="task">
