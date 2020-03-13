@@ -113,7 +113,7 @@ footer div{
 .planningTasksInfoBar{
 	width: 100%;
 	height: auto;
-	overflow: auto;
+	overflow: hidden;
 }
 
 .contentContainer{
@@ -241,6 +241,7 @@ footer div{
 	width: auto;
 	padding: 0px;
 	color: #5ab2ff;
+	border-bottom: 2px solid #5ab2ff;
 	background-color: transparent;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
@@ -250,6 +251,7 @@ footer div{
 
 .statusInfoBar:hover{
 	color: #000;
+	border-bottom: 2px solid #000;
 	background-color: transparent;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
@@ -267,7 +269,7 @@ footer div{
 }
 
 .status{
-	left: 67%;
+	left: 66.5%;
 }
 
 .planningButtonContainer{
@@ -304,11 +306,55 @@ footer div{
 	margin: 25px 0px 0px 0px;
 }
 
-.added{
-	color: #08aa23;
-}
-
 .deleteForm,
 .deleteBackButton{
 	display: inline-block;
+}
+
+a.planningSortMinTime,
+a.planningSortCancel,
+a.planningSortStatusCheck,
+a.planningSortStatusUncheck{
+	color: #fff;
+	margin: 0px 10px;
+	padding: 5px;
+	-webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+a.planningSortMinTime{
+	background-color: #000;
+}
+
+a.planningSortMinTime:hover{
+	background-color: #aeaeae;
+}
+
+a.planningSortCancel{
+	background-color: #000;
+}
+
+a.planningSortCancel:hover{
+	background-color: #f00;
+}
+
+a.planningSortStatusCheck{
+	background-color: #000;
+	padding: 5px 0px 5px 5px;
+}
+
+a.planningSortStatusCheck:hover{
+	background-color: #27d93d;
+}
+
+a.planningSortStatusUncheck{
+	background-color: #000;
+	padding: 5px 1px 5px 5px;
+}
+
+a.planningSortStatusUncheck:hover{
+	background-color: #ffa500;
 }

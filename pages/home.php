@@ -1,8 +1,11 @@
 <?php 
+// Nagekeken door Jesse Sommeling 91102801 13/03/2020
+// Probeer de pdo statements (querys) te scheiden van de rest van je code in een aparte php file.
+// Probeer de form validation te scheiden van je code door het in een apart bestand te zetten.
+// Probeer DRY toe te passen. In dit geval: bijvoorbeeld je form validation generiek te maken (in één function als dat kan, bijvoorbeeld).
+// Ziet er erg netjes uit! Ik zou willen dat ik in mijn eigen project sommige problemen had opgelost zoals jij dat hebt gedaan, chapeau! :)
 	include "../index/header.php";
-	$statement = $pdo->query("SELECT * FROM lists");
-	echo $_GET["row"];
-	echo $_GET["sort"];
+	$statement = getAllLists();
 ?>
 <body>
 	<div class="headerImgContainer">
@@ -38,34 +41,34 @@
 								</div>
 								<div class="timeInfoBar">
 									Tijdsduur
-									<a href="home.php?row=<?php echo $row["id"] ?>&minTime=30">
+									<a class="planningSortMinTime" href="home.php?row=<?php echo $row["id"] ?>&minTime=30" title="Sorteer deze lijst op taken die 30 min of langer duren.">
 										30+
 									</a>
-									<a href="home.php?row=<?php echo $row["id"] ?>&minTime=60">
+									<a class="planningSortMinTime" href="home.php?row=<?php echo $row["id"] ?>&minTime=60" title="Sorteer deze lijst op taken die 60 min of langer duren.">
 										60+
 									</a>
-									<a href="home.php">
+									<a class="planningSortCancel" href="home.php" title="Sorteer deze lijst weer als normaal.">
 										<i class="fas fa-times"></i>
 									</a>
 								</div>
 								<button class="statusInfoBar" onclick="getListWithTasks('<?php echo $row["id"] ?>')">
 									Status
 								</button>
-								<a href="home.php?row=<?php echo $row["id"] ?>&sort=done">
+								<a class="planningSortStatusCheck" href="home.php?row=<?php echo $row["id"] ?>&sort=Gedaan" title="Sorteer deze lijst op taken die al gedaan zijn.">
 									<i class="fas fa-check"></i>
 								</a>
-								<a href="home.php?row=<?php echo $row["id"] ?>&sort=undone">
+								<a class="planningSortStatusUncheck" href="home.php?row=<?php echo $row["id"] ?>&sort=Nog doen" title="Sorteer deze lijst op taken die nog niet gedaan zijn.">
 									<i class="fas fa-hourglass-half"></i>
 								</a>
-								<a href="home.php">
+								<a class="planningSortCancel" href="home.php" title="Sorteer deze lijst weer als normaal.">
 									<i class="fas fa-times"></i>
 								</a>
 							</div>
 							<hr>
 							<?php 
-								$statement2 = $pdo->query("SELECT * FROM tasks WHERE list_id=$row[id] ORDER BY tasks.task_id ASC");
+								$taskStatement = getTasksByList($row["id"]);
 							?>
-							<?php while ($row2 = $statement2->fetch()){ ?>
+							<?php while ($row2 = $taskStatement->fetch()){ ?>
 								<div class="planningTaskContainer">
 									<div class="task">
 										<?php echo $row2["task"]?>

@@ -1,18 +1,8 @@
 <?php 
 	include "../index/header.php";
 	$id = $_GET["number"];
-
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
-		$sql = "DELETE FROM tasks WHERE list_id = :id";
-		$statement = $pdo->prepare($sql);
-		$statement->execute(["id" => $id]);
-
-		$sql = "DELETE FROM lists WHERE id = :id";
-		$statement = $pdo->prepare($sql);
-		$statement->execute(["id" => $id]);
-
-		header("Location: home.php");
-		die();
+		deleteList($id);
 	}
 ?>
 <body>

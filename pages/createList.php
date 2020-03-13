@@ -1,22 +1,8 @@
 <?php 
 	include "../index/header.php";
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
-		$listName = test_input($_POST["listName"]);
-		
-		$sql = "INSERT INTO lists(name) VALUES(:listName)";
-		$statement = $pdo->prepare($sql);
-		$statement->execute(["listName" => $listName]);
-
-		header("Location: home.php");
-		die();
+		createList();
 	}
-
-	function test_input($data){
-	  $data = trim($data); //Zorgt ervoor dat onnodige space, tab, newline worden weggehaald.
-	  $data = stripslashes($data); //verwijderd backslashes (\).
-	  $data = htmlspecialchars($data); //Dit zorgt ervoor dat speciale karakters naar html veranderd waardoor je niet gehackt kan worden.
-	  return $data;
-    }
 ?>
 <body>
 	<div class="createContainer">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Gegenereerd op: 07 mrt 2020 om 08:40
+-- Gegenereerd op: 13 mrt 2020 om 11:49
 -- Serverversie: 5.6.37
 -- PHP-versie: 7.1.8
 
@@ -28,16 +28,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `lists` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `date_made` datetime DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Gegevens worden geëxporteerd voor tabel `lists`
+-- Tabelstructuur voor tabel `tasks`
 --
 
-INSERT INTO `lists` (`id`, `name`, `date_made`) VALUES
-(2, 'lijst 1\r\n', '2020-02-21 10:17:59');
+CREATE TABLE IF NOT EXISTS `tasks` (
+  `task_id` int(11) NOT NULL,
+  `task` text,
+  `length_of_time` varchar(255) DEFAULT 'N.V.T',
+  `status` varchar(255) NOT NULL DEFAULT 'Nog doen',
+  `list_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -50,6 +56,12 @@ ALTER TABLE `lists`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexen voor tabel `tasks`
+--
+ALTER TABLE `tasks`
+  ADD PRIMARY KEY (`task_id`);
+
+--
 -- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
@@ -57,7 +69,12 @@ ALTER TABLE `lists`
 -- AUTO_INCREMENT voor een tabel `lists`
 --
 ALTER TABLE `lists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT voor een tabel `tasks`
+--
+ALTER TABLE `tasks`
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

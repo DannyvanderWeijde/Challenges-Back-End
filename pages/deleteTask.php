@@ -3,12 +3,7 @@
 	$id = $_GET["number"];
 
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
-		$sql = "DELETE FROM tasks WHERE task_id = :id";
-		$statement = $pdo->prepare($sql);
-		$statement->execute(["id" => $id]);
-
-		header("Location: home.php");
-		die();
+		deleteTask($id);
 	}
 ?>
 <body>

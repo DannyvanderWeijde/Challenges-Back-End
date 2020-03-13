@@ -1,27 +1,10 @@
 <?php 
 	include "../index/header.php";
 	$id = $_GET["number"];
-	$edited = false;
-	$sql = "SELECT * FROM Lists WHERE id = :id";
-	$statement = $pdo->prepare($sql);
-	$statement->execute(["id" => $id]); 
-	$statement = $statement->fetch();
-
+	$statement = getList($id);
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
-		$name = test_input($_POST["name"]);
-
-		$sql2 = "UPDATE lists SET name = :name WHERE id = :id";
-		$statement2 = $pdo->prepare($sql2);
-		$statement2->execute(["name" => $name, "id" => $id]);
-		$edited = true;
+		editList($id);
 	}
-
-	function test_input($data){
-	  $data = trim($data); //Zorgt ervoor dat onnodige space, tab, newline worden weggehaald.
-	  $data = stripslashes($data); //verwijderd backslashes (\).
-	  $data = htmlspecialchars($data); //Dit zorgt ervoor dat speciale karakters naar html veranderd waardoor je niet gehackt kan worden.
-	  return $data;
-    }
 ?>
 <body>
 	<div class="createContainer">
@@ -41,11 +24,6 @@
 					Aanpassen
 				</button>
 			</form>
-			<?php if($edited == true){ ?>
-				<div class="added">
-					Lijst is aangepast!
-				</div>
-			<?php } ?>
 		</div>
 	</div>
 </body>

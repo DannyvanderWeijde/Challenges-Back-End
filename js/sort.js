@@ -1,5 +1,6 @@
 var lists = document.getElementsByClassName("planningTasks");
 
+//Get the list that was clicked on and put all the taskContainers in an array.
 function getListWithTasks(id){
 	var taskContainers = [];
 	for(i = 0; lists.length > i; i++){
@@ -15,6 +16,7 @@ function getListWithTasks(id){
 	sort(taskContainers);
 }
 
+//Sort the list on the status. If it is already from done to not done it reverses it.
 function sort(taskContainers,reverseSwitch = false){
 	var switching = true;
 	var reverse = 0;
